@@ -1,9 +1,7 @@
-package com.example.uncue.repository;
+package com.uncue_core.uncue.repository;
 
-import com.example.uncue.collections.Employee;
+import com.uncue_core.uncue.collections.Employee;
 import org.springframework.data.mongodb.repository.MongoRepository;
-
-import java.util.List;
 
 public interface EmployeeRepository extends MongoRepository<Employee, String> {
 
@@ -11,6 +9,6 @@ public interface EmployeeRepository extends MongoRepository<Employee, String> {
 //
 //    List<Employee> findByUserid(String userid);
 //
-//    void deleteBy_id(String _id);
+    void deleteByid(String id);
 
 }

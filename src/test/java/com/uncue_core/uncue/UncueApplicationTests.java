@@ -1,4 +1,4 @@
-package com.example.uncue;
+package com.uncue_core.uncue;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

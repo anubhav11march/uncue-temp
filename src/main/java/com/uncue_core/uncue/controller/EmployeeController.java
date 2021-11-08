@@ -1,9 +1,12 @@
-package com.example.uncue.controller;
+package com.uncue_core.uncue.controller;
 
-import com.example.uncue.collections.Employee;
+import com.uncue_core.uncue.auth.models.User;
+import com.uncue_core.uncue.collections.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
-import com.example.uncue.repository.EmployeeRepository;
+import com.uncue_core.uncue.repository.EmployeeRepository;
 
 import java.util.List;
 
@@ -14,9 +17,17 @@ public class EmployeeController {
     @Autowired
     private EmployeeRepository repository;
 
+    @GetMapping("user-details")
+    public ResponseEntity<User> getUserInfo(@AuthenticationPrincipal User user) {
+        return ResponseEntity.ok(user);
+    }
+
     @GetMapping
     public List<Employee> getEmployees() {
 
+        Employee employee  = new Employee();
+        employee.setName("Uday");
+        employee.getName();
         return repository.findAll();
     }
 
@@ -35,7 +46,7 @@ public class EmployeeController {
 
     @DeleteMapping
     public void deleteEmployee(@PathVariable String id){
-        repository.deleteBy_id(id);
+        repository.deleteByid(id);
     }
 
 
