@@ -2,12 +2,14 @@ package com.uncue_core.uncue.auth;
 
 import com.uncue_core.uncue.auth.models.Credentials;
 import com.uncue_core.uncue.auth.models.SecurityProperties;
-import com.uncue_core.uncue.auth.models.User;
+import com.uncue_core.uncue.collections.User;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.FirebaseToken;
 
+import com.uncue_core.uncue.controller.UserController;
+import com.uncue_core.uncue.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -38,6 +40,9 @@ public class SecurityFilter extends OncePerRequestFilter {
 
     @Autowired
     SecurityProperties securityProps;
+
+    @Autowired
+    UserController userController;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
@@ -89,6 +94,8 @@ public class SecurityFilter extends OncePerRequestFilter {
             user.setPicture(decodedToken.getPicture());
             user.setIssuer(decodedToken.getIssuer());
             user.setEmailVerified(decodedToken.isEmailVerified());
+            userController.findOrCreateUserInRepository(user);
+
         }
         return user;
     }

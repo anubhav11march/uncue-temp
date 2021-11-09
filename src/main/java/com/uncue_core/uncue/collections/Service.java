@@ -1,20 +1,18 @@
 package com.uncue_core.uncue.collections;
 
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
-@Document(collection = "customers")
-public class Customer {
+@Document(collection = "services")
+public class Service {
 
     @Id
     private String id;
     private String uid;
     private String name;
-    private String dob;
-    private String gender;
-    private String contact;
+    private float price;
+    private float timeTaken;
 
 }

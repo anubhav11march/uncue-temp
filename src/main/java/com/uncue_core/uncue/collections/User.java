@@ -1,18 +1,24 @@
-package com.uncue_core.uncue.auth.models;
+package com.uncue_core.uncue.collections;
 
 import lombok.Data;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
 
 @Data
+@Document(collection = "users")
 public class User implements Serializable {
 
-    private static final long serialVersionUID = 4408418647685225829L;
+    @Id
+    private String id;
     private String uid;
     private String name;
     private String email;
     private boolean isEmailVerified;
     private String issuer;
     private String picture;
+
+
 
 }

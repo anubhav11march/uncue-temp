@@ -4,21 +4,21 @@ import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Date;
 
 @Data
-@Document(collection = "employees")
-public class Employee {
+@Document(collection = "products")
+public class Product {
 
     @Id
     private String id;
     private String uid;
     private String name;
-    private String dob;
-    private String gender;
-    private String contact;
-    private int rating;
-    private List<String> specialities = new ArrayList();
+    private String product_code;
+    private Date mfg;
+    private Date expiryDate;
+    private float buyingPrice;
+    private float sellingPrice;
+    private int Qty;
 
 }

@@ -2,7 +2,7 @@ package com.uncue_core.uncue.auth;
 
 import com.uncue_core.uncue.auth.models.Credentials;
 import com.uncue_core.uncue.auth.models.SecurityProperties;
-import com.uncue_core.uncue.auth.models.User;
+import com.uncue_core.uncue.collections.User;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.security.core.context.SecurityContext;
@@ -32,6 +32,7 @@ public class SecurityService {
         if (principal instanceof User) {
             userPrincipal = ((User) principal);
         }
+
         return userPrincipal;
     }
 

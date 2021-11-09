@@ -1,6 +1,6 @@
 package com.uncue_core.uncue.controller;
 
-import com.uncue_core.uncue.auth.models.User;
+import com.uncue_core.uncue.collections.User;
 import com.uncue_core.uncue.collections.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,36 +17,49 @@ public class EmployeeController {
     @Autowired
     private EmployeeRepository repository;
 
-    @GetMapping("user-details")
-    public ResponseEntity<User> getUserInfo(@AuthenticationPrincipal User user) {
-        return ResponseEntity.ok(user);
-    }
+    @Autowired
+    private UserController userController;
 
-    @GetMapping
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public List<Employee> getEmployees() {
 
-        Employee employee  = new Employee();
-        employee.setName("Uday");
-        employee.getName();
-        return repository.findAll();
+        return repository.findByUid(userController.getUid());
     }
 
-    @PostMapping
+    @RequestMapping(value = "/{employeeId}", method = RequestMethod.GET)
+    public Employee getEmployee(@PathVariable("employeeId") String employeeId) {
+        System.out.println("emp" + employeeId);
+        return repository.findById(employeeId).get();
+    }
+
+    @RequestMapping(value = "/", method = RequestMethod.POST)
     public Employee addEmployee(@RequestBody Employee employee) {
 
+        employee.setUid(userController.getUid());
         repository.save(employee);
         return employee;
 
     }
 
-    @PutMapping
-    public void updateEmployee(@RequestBody Employee employee, @PathVariable String id){
+    @RequestMapping(value = "/{employeeId}", method = RequestMethod.PUT)
+    public ResponseEntity<Employee> updateEmployee(@PathVariable("employeeId") String employeeId, @RequestBody Employee employee){
+
+        employee.setId(employeeId);
+        employee.setUid(userController.getUid());
+
+        if(repository.findById(employeeId) == null){
+            return (ResponseEntity<Employee>) ResponseEntity.badRequest();
+        }
+
+        repository.save(employee);
+        return ResponseEntity.ok(employee);
 
     }
 
-    @DeleteMapping
-    public void deleteEmployee(@PathVariable String id){
-        repository.deleteByid(id);
+    @RequestMapping(value = "/{employeeId}", method = RequestMethod.DELETE)
+    public void deleteEmployee(@PathVariable("employeeId") String employeeId){
+        System.out.print("Delete User");
+        repository.deleteByid(employeeId);
     }
 
 
