@@ -1,10 +1,8 @@
 package com.uncue_core.uncue.controller;
 
-import com.uncue_core.uncue.collections.User;
 import com.uncue_core.uncue.collections.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import com.uncue_core.uncue.repository.EmployeeRepository;
 
@@ -27,9 +25,13 @@ public class EmployeeController {
     }
 
     @RequestMapping(value = "/{employeeId}", method = RequestMethod.GET)
-    public Employee getEmployee(@PathVariable("employeeId") String employeeId) {
-        System.out.println("emp" + employeeId);
-        return repository.findById(employeeId).get();
+    public Object getEmployee(@PathVariable("employeeId") String employeeId) {
+
+        if(repository.existsById(employeeId)){
+            return repository.findById(employeeId).get();
+        }
+
+        return "Not Found";
     }
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
@@ -42,24 +44,25 @@ public class EmployeeController {
     }
 
     @RequestMapping(value = "/{employeeId}", method = RequestMethod.PUT)
-    public ResponseEntity<Employee> updateEmployee(@PathVariable("employeeId") String employeeId, @RequestBody Employee employee){
+    public Employee updateEmployee(@PathVariable("employeeId") String employeeId, @RequestBody Employee employee){
 
         employee.setId(employeeId);
         employee.setUid(userController.getUid());
 
-        if(repository.findById(employeeId) == null){
-            return (ResponseEntity<Employee>) ResponseEntity.badRequest();
-        }
-
         repository.save(employee);
-        return ResponseEntity.ok(employee);
+        return repository.findById(employeeId).get();
 
     }
 
     @RequestMapping(value = "/{employeeId}", method = RequestMethod.DELETE)
-    public void deleteEmployee(@PathVariable("employeeId") String employeeId){
-        System.out.print("Delete User");
-        repository.deleteByid(employeeId);
+    public String deleteEmployee(@PathVariable("employeeId") String employeeId){
+
+        if(repository.existsById(employeeId)) {
+            repository.deleteByid(employeeId);
+            return "deleted";
+        }
+
+        return "Not Found";
     }
 
 

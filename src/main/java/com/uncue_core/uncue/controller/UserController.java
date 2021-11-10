@@ -42,13 +42,15 @@ public class UserController {
             return userRepository.findByUid(newUser.getUid()).get();
         }
     }
+
+    @GetMapping("/uid")
     public String getUid() {
         return securityService.getUser().getUid();
     }
 
-    @GetMapping
+    @GetMapping("/details")
     public User getUser(){
-        return securityService.getUser();
+        return userRepository.findByUid(getUid()).get();
     }
 
 
