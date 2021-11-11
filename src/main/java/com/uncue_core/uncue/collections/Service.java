@@ -9,7 +9,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Service {
 
     @Id
-    private String id;
+    private String service_id;
     private String uid;
     private String name;
     private float price;
