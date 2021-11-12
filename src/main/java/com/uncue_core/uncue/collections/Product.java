@@ -11,8 +11,8 @@ import java.util.Date;
 public class Product {
 
     @Id
-    private String product_id;
-    private String uid;
+    private String productId;
+    private String saloonId;
     private String name;
     private String product_code;
     private Date mfg;

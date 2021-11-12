@@ -10,8 +10,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Customer {
 
     @Id
-    private String customer_id;
-    private String uid;
+    private String customerId;
+    private String saloonId;
     private String name;
     private String dob;
     private String gender;

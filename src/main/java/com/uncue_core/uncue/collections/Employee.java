@@ -12,8 +12,8 @@ import java.util.List;
 public class Employee {
 
     @Id
-    private String id;
-    private String uid;
+    private String employeeId;
+    private String saloonId;
     private String name;
     private String dob;
     private String gender;

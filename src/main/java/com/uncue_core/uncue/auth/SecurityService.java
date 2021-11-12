@@ -2,7 +2,7 @@ package com.uncue_core.uncue.auth;
 
 import com.uncue_core.uncue.auth.models.Credentials;
 import com.uncue_core.uncue.auth.models.SecurityProperties;
-import com.uncue_core.uncue.collections.User;
+import com.uncue_core.uncue.collections.Saloon;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.security.core.context.SecurityContext;
@@ -25,15 +25,15 @@ public class SecurityService {
     @Autowired
     SecurityProperties securityProps;
 
-    public User getUser() {
-        User userPrincipal = null;
+    public Saloon getUser() {
+        Saloon saloonPrincipal = null;
         SecurityContext securityContext = SecurityContextHolder.getContext();
         Object principal = securityContext.getAuthentication().getPrincipal();
-        if (principal instanceof User) {
-            userPrincipal = ((User) principal);
+        if (principal instanceof Saloon) {
+            saloonPrincipal = ((Saloon) principal);
         }
 
-        return userPrincipal;
+        return saloonPrincipal;
     }
 
     public Credentials getCredentials() {

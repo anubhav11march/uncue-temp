@@ -2,14 +2,13 @@ package com.uncue_core.uncue.auth;
 
 import com.uncue_core.uncue.auth.models.Credentials;
 import com.uncue_core.uncue.auth.models.SecurityProperties;
-import com.uncue_core.uncue.collections.User;
+import com.uncue_core.uncue.collections.Saloon;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.FirebaseToken;
 
-import com.uncue_core.uncue.controller.UserController;
-import com.uncue_core.uncue.repository.UserRepository;
+import com.uncue_core.uncue.controller.SaloonController;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -42,7 +41,7 @@ public class SecurityFilter extends OncePerRequestFilter {
     SecurityProperties securityProps;
 
     @Autowired
-    UserController userController;
+    SaloonController saloonController;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
@@ -75,29 +74,29 @@ public class SecurityFilter extends OncePerRequestFilter {
             e.printStackTrace();
             log.error("Firebase Exception:: ", e.getLocalizedMessage());
         }
-        User user = firebaseTokenToUserDto(decodedToken);
-        if (user != null) {
-            UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(user,
+        Saloon saloon = firebaseTokenToUserDto(decodedToken);
+        if (saloon != null) {
+            UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(saloon,
                     new Credentials(type, decodedToken, token, session), null);
             authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
             SecurityContextHolder.getContext().setAuthentication(authentication);
         }
     }
 
-    private User firebaseTokenToUserDto(FirebaseToken decodedToken) {
-        User user = null;
+    private Saloon firebaseTokenToUserDto(FirebaseToken decodedToken) {
+        Saloon saloon = null;
         if (decodedToken != null) {
-            user = new User();
-            user.setUid(decodedToken.getUid());
-            user.setName(decodedToken.getName());
-            user.setEmail(decodedToken.getEmail());
-            user.setPicture(decodedToken.getPicture());
-            user.setIssuer(decodedToken.getIssuer());
-            user.setEmailVerified(decodedToken.isEmailVerified());
-            userController.findOrCreateUserInRepository(user);
+            saloon = new Saloon();
+            saloon.setUid(decodedToken.getUid());
+            saloon.setName(decodedToken.getName());
+            saloon.setEmail(decodedToken.getEmail());
+            saloon.setPicture(decodedToken.getPicture());
+            saloon.setIssuer(decodedToken.getIssuer());
+            saloon.setEmailVerified(decodedToken.isEmailVerified());
+            saloonController.findOrCreateSaloonInRepository(saloon);
 
         }
-        return user;
+        return saloon;
     }
 
 }

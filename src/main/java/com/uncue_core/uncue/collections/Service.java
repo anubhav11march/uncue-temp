@@ -9,8 +9,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Service {
 
     @Id
-    private String service_id;
-    private String uid;
+    private String serviceId;
+    private String saloonId;
     private String name;
     private float price;
     private float timeTaken;

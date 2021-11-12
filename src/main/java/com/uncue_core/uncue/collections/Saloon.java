@@ -7,11 +7,11 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.io.Serializable;
 
 @Data
-@Document(collection = "users")
-public class User implements Serializable {
+@Document(collection = "saloons")
+public class Saloon implements Serializable {
 
     @Id
-    private String id;
+    private String saloonId;
     private String uid;
     private String name;
     private String email;

@@ -2,7 +2,6 @@ package com.uncue_core.uncue.controller;
 
 import com.uncue_core.uncue.collections.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.uncue_core.uncue.repository.EmployeeRepository;
 
@@ -16,12 +15,12 @@ public class EmployeeController {
     private EmployeeRepository repository;
 
     @Autowired
-    private UserController userController;
+    private SaloonController saloonController;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public List<Employee> getEmployees() {
 
-        return repository.findByUid(userController.getUid());
+        return repository.findBySaloonId(saloonController.getSaloonId());
     }
 
     @RequestMapping(value = "/{employeeId}", method = RequestMethod.GET)
@@ -37,7 +36,7 @@ public class EmployeeController {
     @RequestMapping(value = "/", method = RequestMethod.POST)
     public Employee addEmployee(@RequestBody Employee employee) {
 
-        employee.setUid(userController.getUid());
+        employee.setSaloonId(saloonController.getSaloonId());
         repository.save(employee);
         return employee;
 
@@ -46,8 +45,8 @@ public class EmployeeController {
     @RequestMapping(value = "/{employeeId}", method = RequestMethod.PUT)
     public Employee updateEmployee(@PathVariable("employeeId") String employeeId, @RequestBody Employee employee){
 
-        employee.setId(employeeId);
-        employee.setUid(userController.getUid());
+        employee.setEmployeeId(employeeId);
+        employee.setSaloonId(saloonController.getSaloonId());
 
         repository.save(employee);
         return repository.findById(employeeId).get();
@@ -58,7 +57,7 @@ public class EmployeeController {
     public String deleteEmployee(@PathVariable("employeeId") String employeeId){
 
         if(repository.existsById(employeeId)) {
-            repository.deleteByid(employeeId);
+            repository.deleteByEmployeeId(employeeId);
             return "deleted";
         }
 
