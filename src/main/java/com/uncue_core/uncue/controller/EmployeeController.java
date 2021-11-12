@@ -27,7 +27,7 @@ public class EmployeeController {
     public Object getEmployee(@PathVariable("employeeId") String employeeId) {
 
         if(repository.existsById(employeeId)){
-            return repository.findById(employeeId).get();
+            return repository.findByEmployeeId(employeeId).get();
         }
 
         return "Not Found";
@@ -63,7 +63,5 @@ public class EmployeeController {
 
         return "Not Found";
     }
-
-
 
 }

@@ -15,9 +15,6 @@ public class Product {
     private String saloonId;
     private String name;
     private String product_code;
-    private Date mfg;
-    private Date expiryDate;
-    private float buyingPrice;
     private float sellingPrice;
     private int Qty;
 

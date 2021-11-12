@@ -13,6 +13,6 @@ public class Service {
     private String saloonId;
     private String name;
     private float price;
-    private float timeTaken;
+    private float duration;
 
 }
