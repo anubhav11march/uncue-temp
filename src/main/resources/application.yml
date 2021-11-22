@@ -6,20 +6,20 @@ spring:
       max-request-size: 215MB
   application:
     name: visualizer
-  datasource:
-    url: jdbc:h2:mem:testdb
-    username: sa
-    password: password
+#  datasource:
+#    url: jdbc:h2:mem:testdb
+#    username: sa
+#    password: password
     # alternative datasource: external mysql database example
   #    url: jdbc:mysql://localhost:3306/test
   #    username: root
   #    password: root
 
-  jpa:
-    # remove the next line, if you use mysql:
-    database-platform: org.hibernate.dialect.H2Dialect
-    hibernate:
-      ddl-auto: update
+#  jpa:
+#    # remove the next line, if you use mysql:
+#    database-platform: org.hibernate.dialect.H2Dialect
+#    hibernate:
+#      ddl-auto: update
 
 
 security:
@@ -44,9 +44,7 @@ security:
     - POST
     - PUT
     - PATCH
-    - DELETE
-    - OPTIONS
-  allowed-headers:
+    - DEL:
     - Authorization
     - Origin
     - Content-Type
