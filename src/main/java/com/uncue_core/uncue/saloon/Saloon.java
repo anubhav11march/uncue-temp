@@ -19,7 +19,7 @@ public class Saloon implements Serializable {
     private int saloonId;
     private String name;
     private String email;
-    private int phoneNumber;
+    private long phoneNumber;
     private String password;
     private Byte[] imageURL;
     private Boolean approved;
