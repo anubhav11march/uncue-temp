@@ -1,4 +1,4 @@
-package com.uncue_core.uncue.email;
+package com.uncue_core.uncue.emailService;
 
 
 import com.uncue_core.uncue.Security.service.UserInfo;

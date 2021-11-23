@@ -23,6 +23,7 @@ public class Customer {
     @ElementCollection
     private List<String> purchasedPackages;
     private String createdBy;
+    @Column(unique = true,nullable=false)
     private String mailid;
 
 }

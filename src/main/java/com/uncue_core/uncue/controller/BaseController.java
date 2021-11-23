@@ -21,16 +21,17 @@ public class BaseController {
     DataSource dataSource;
     @GetMapping("/getlist/{tablename}/{columnnames}/{selectedcolmn}/{selectedcolumnvalue}")
     public List<Map<String, Object>> retrieveSingleUserData(@PathVariable String tablename, @PathVariable String columnnames, @PathVariable String selectedcolmn, @PathVariable String selectedcolumnvalue){
-        System.out.println("JdbcTemplate:"+jdbcTemplate);
+//        System.out.println("JdbcTemplate:"+jdbcTemplate);
+//        dataSource.getDataSource();
+//        System.out.println("datasourceString:"+dataSource.getConnectionProperties());
+//        String pkColumn = "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = 'saloon' AND TABLE_NAME = '"+tablename+"'\n" +
+//                "  AND COLUMN_KEY = 'PRI'";
+//
+//      String columnName =   jdbcTemplate.queryForObject(pkColumn,new Object[]{},String.class);
+//        System.out.println("columnName:"+columnName);
+//        String sql=null;
 
-        String pkColumn = "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = 'saloon' AND TABLE_NAME = '"+tablename+"'\n" +
-                "  AND COLUMN_KEY = 'PRI'";
-
-      String columnName =   jdbcTemplate.queryForObject(pkColumn,new Object[]{},String.class);
-        System.out.println("columnName:"+columnName);
-        String sql=null;
-
-        sql ="SELECT  "+ columnnames + " FROM "+" "+ tablename+" where  "+selectedcolmn+" = "+selectedcolumnvalue+" order by "+columnName+" desc";
+       String sql ="SELECT  "+ columnnames + " FROM "+" "+ tablename+" where  "+selectedcolmn+" = "+selectedcolumnvalue+"";
 
         System.out.println(sql);
 

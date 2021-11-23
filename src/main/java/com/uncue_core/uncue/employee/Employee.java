@@ -20,11 +20,12 @@ public class Employee {
     private String name;
     private String Dob;
     private String Gender;
+    @Column(unique = true)
     private long contactno;
     float rating;
     @ElementCollection
     private List<String> specialty;
-    @NotNull
+    @Column(unique = true,nullable=false)
     private String email;
     private Boolean canLogin;
     private String password;
