@@ -1,34 +1,38 @@
 package com.uncue_core.uncue.saloon;
 
-import com.uncue_core.uncue.Security.service.UserInfo;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("${BaseUrl}")
 public class SaloonController {
-
     @Autowired
-    SaloonRepository saloonRepository;
+    private SaloonService service;
 
-    @Autowired
-    SaloonService service;
-    @Autowired
-    UserInfo info;
-
-    @PutMapping("${insertOrUpdateSaloon}")
-    public Saloon insertSaloon(@RequestBody Saloon saloon){
-          return  service.insertSaloon(saloon);
-     }
+    @GetMapping("${reteriveSaloons}")
+    public List<Saloon> getSaloons() {
 
 
+        return   service.getSaloons();
+
+    }
+
+    @GetMapping("${reteriveSaloon}")
+    public Saloon getSaloon(@PathVariable("saloonId") int saloonId) {
+        return   service.getSaloon(saloonId);
+
+    }
+
+    @PostMapping("${insertOrUpdateSaloon}")
+    public Saloon insertSaloon(@RequestBody Saloon saloon) {
+
+        return service.insertSaloon(saloon);
 
 
-
-
+    }
 
 
 }

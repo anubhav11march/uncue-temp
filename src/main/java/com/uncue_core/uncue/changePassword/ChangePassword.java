@@ -3,12 +3,14 @@ package com.uncue_core.uncue.changePassword;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
+
 @Getter
 @Setter
-public class ChangePassword {
+public class ChangePassword implements Serializable {
 
-	private String OldPassword;
+	private String oldPassword;
 
-	private String NewPassword;
+	private String newPassword;
 
 }

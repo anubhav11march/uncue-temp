@@ -11,7 +11,7 @@ public class CustomerService {
    @Autowired
    CustomerRepository repository;
    public List<Customer> getAllCustomers(int saloonId){
-     return  repository.findBySaloonid(saloonId);
+     return  repository.findBySaloonidOrderByCustomeridDesc(saloonId);
    }
 
     public Customer insertCustomer(Customer customer) {
@@ -20,5 +20,13 @@ public class CustomerService {
 
     public Customer searchCustomer(String searchCustomer) {
        return repository.searchCustomer(searchCustomer);
+    }
+
+    public List<Customer> autosuggestName(String searchCustomer) {
+       return repository.findByNameStartingWith(searchCustomer);
+    }
+
+    public Customer getCustomer(int customerid) {
+       return repository.findById(customerid).get();
     }
 }

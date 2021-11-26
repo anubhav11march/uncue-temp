@@ -254,16 +254,10 @@ public class AuthRestAPIService {
     }
 
     public ReturningMessage logout() {
-//		System.out.println();
-//		System.out.println("token key is:"+applicationLevel.tokenKey);
-//		System.out.println("get logger size"+applicationLevel.LoggedInUsersList.size());
-//		System.out.println("get logger:"+userInfo.getLoggedInUser().getUsername());
-//		System.out.println("get logger:"+userInfo.getLoggedInUser().getAuthorities());
-//		System.out.println("get logger id:"+userInfo.getLoggedInUser().getUsers().getUserid());
-//		System.out.println();
-//		applicationLevel.LoggedInUsersList.remove(applicationLevel.tokenKey);
+
         System.out.println("get logger size after"+applicationLevel.LoggedInUsersList.size());
         applicationLevel.LoggedinUsersId.remove(userInfo.getLoggedInUser().getUsers().getEmployeeid());
+        applicationLevel.LoggedInUsersList.remove(applicationLevel.tokenKey);
         if (applicationLevel.LoggedInUsersList.get(userInfo.getLoggedInUser().getUsername()) == null) {
             return new ReturningMessage(DisplayMessage.SuccessfulLogout, "", false);
         } else {

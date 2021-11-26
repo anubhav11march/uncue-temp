@@ -1,9 +1,7 @@
 package com.uncue_core.uncue.product;
 
-import com.uncue_core.uncue.Security.service.UserInfo;
-import com.uncue_core.uncue.saloon.SaloonController;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,28 +9,30 @@ import java.util.List;
 @RestController
 @RequestMapping("${BaseUrl}")
 public class ProductController {
-
-    @Autowired
-    private ProductRepository repository;
     @Autowired
     private ProductService productService;
 
-    @Autowired
-    private UserInfo userInfo;
+    @PostMapping("${insertOrUpdateProduct}")
+    public Product insertProduct(@RequestBody Product product) {
+
+        return productService.insertProduct(product);
+
+    }
+
+    @GetMapping("${reteriveProducts}")
+    public List<Product> getProducts(@PathVariable("saloonId") int saloonId) {
 
 
-
-
-    @PostMapping("${productInsertOrUpdate}")
-    public Product addProduct(@RequestBody Product product) {
-
-        product.setSaloonId(userInfo.getLoggedInUser().getUsers().getSaloonid());
-        repository.save(product);
-        return product;
+        return   productService.getProducts(saloonId);
 
     }
 
 
+    @GetMapping("${reteriveProduct}")
+    public Product getProduct(@PathVariable("productid") int productid) {
+        return   productService.getProduct(productid);
+
+    }
 
 
 }

@@ -29,7 +29,7 @@ public class EmployeeController {
 
     }
 
-    @PutMapping("${insertOrUpdateEmployee}")
+    @PostMapping("${insertOrUpdateEmployee}")
     public Employee addEmployee(@RequestBody Employee employee) {
 
         return employeeService.insertEmployee(employee);

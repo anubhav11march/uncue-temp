@@ -8,9 +8,12 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface CustomerRepository extends JpaRepository<Customer, String> {
-    List<Customer> findBySaloonid(int saloonId);
+public interface CustomerRepository extends JpaRepository<Customer, Integer> {
+    List<Customer> findBySaloonidOrderByCustomeridDesc(int saloonId);
 
-    @Query(value="select * from `customer` where `customer`.`email`= ?1 or `customer`.`contactNo` =?1",nativeQuery =true)
+    @Query(value="select * from `customer` where `customer`.`mailid`= ?1 or `customer`.`contactno` =?1",nativeQuery =true)
     Customer searchCustomer(String searchCustomer);
+
+
+   List<Customer> findByNameStartingWith(String searchCustomer);
 }

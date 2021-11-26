@@ -1,25 +1,35 @@
 package com.uncue_core.uncue.service;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.io.Serializable;
 
+@Data
 @Entity
-@Setter
-@Getter
-public class Service {
-    @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    int serviceId;
-    int saloonId;
-    String Name;
-    Float Price;
-    Float duration;
-    String bodyPart;
+@Table(name = "service")
+public class Service implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
+    @Id
+    @Column(name = "serviceId", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer serviceId;
+
+    @Column(name = "Name",nullable = false)
+    private String name;
+
+    @Column(name = "Price")
+    private Float price;
+
+    @Column(name = "bodyPart")
+    private String bodyPart;
+
+    @Column(name = "duration")
+    private Float duration;
+
+    @Column(name = "saloonId", nullable = false)
+    private Integer saloonId;
 
 }

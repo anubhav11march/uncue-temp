@@ -1,23 +1,30 @@
 package com.uncue_core.uncue.appointment;
 
+import com.uncue_core.uncue.LobArray.IntegerArray;
+import lombok.Getter;
+import lombok.Setter;
+
+import javax.annotation.Nullable;
 import javax.persistence.*;
-import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.Serializable;
 
 @Entity
-public class Appointment {
+@Getter
+@Setter
+public class Appointment implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int appointmentId;
+    int appointmentid;
     long timeStamp;
-    int saloonId;
-    int CustomerId;
-    int EmployeeId;
-    Float billId;
+    @Column(nullable = false)
+    int saloonid;
+    @Column(nullable = false)
+    int customerid;
+    @Column(nullable = false)
+    int employeeid;
+    Float billid;
     String status;
-    @ElementCollection
-    List<Integer> serviceIds;
-
+    @Lob
+    IntegerArray serviceid;
 
 }

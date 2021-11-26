@@ -15,7 +15,7 @@ public class EmployeeService {
     private PasswordEncoder passwordEncoder;
 
     public List<Employee> getEmployees(int saloonId) {
-       return repository.findBySaloonid(saloonId);
+       return repository.findBySaloonidOrderByEmployeeidDesc(saloonId);
     }
 
     public Employee getEmployee(int employeeId) {

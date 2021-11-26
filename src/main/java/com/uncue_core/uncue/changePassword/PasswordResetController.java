@@ -15,8 +15,8 @@ public class PasswordResetController {
 	@Autowired
 	AuthRestAPIService authRestAPIService;
 
-	@PutMapping("${resetPasswordUrl}")
-	public ReturningMessage passwordUpdate(@RequestBody final ChangePassword changePassword) throws Exception {
+	@PostMapping("${resetPasswordUrl}")
+	public ReturningMessage passwordUpdate(@RequestBody ChangePassword changePassword) throws Exception {
 		return changePasswordService.passwordUpdate(changePassword);
 	}
 	

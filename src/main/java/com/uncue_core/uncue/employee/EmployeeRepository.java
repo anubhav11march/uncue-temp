@@ -9,9 +9,8 @@ import java.util.Optional;
 @Repository
 public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
 
-    List<Employee> findBySaloonid(int uid);
-//    Optional<Employee> findByEmployeeId(int id);
-    @Query(value = "SELECT * FROM `employee` WHERE email=?1", nativeQuery = true)
+    List<Employee> findBySaloonidOrderByEmployeeidDesc(int uid);
+    @Query(value = "SELECT * FROM employee WHERE email=?1 and canLogin=true ", nativeQuery = true)
     Optional<Employee> findByemail(String username);
     Optional<List<Employee>> findByEmail(String username);
 }

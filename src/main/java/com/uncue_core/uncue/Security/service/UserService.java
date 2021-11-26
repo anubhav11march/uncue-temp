@@ -29,8 +29,10 @@ public class UserService implements UserDetailsService {
 		CustomUserDetails customUserDetails = new CustomUserDetails();
 		List<Employee> users = userRepository.findByEmail(userName).orElseThrow(
 				() -> new UsernameNotFoundException("User Not Found with -> username or email : " + userName));
+
 		for(Employee rd:users) {
-		customUserDetails.setUsers(rd);
+			System.out.println("Empoloyee"+rd.toString());
+			customUserDetails.setUsers(rd);
 		}
 
 		return customUserDetails;
