@@ -36,9 +36,10 @@ public class EmployeeController {
 
     }
 
-
-
-
+    @GetMapping("${getEmployeeHistory}")
+    public List<EmployeeHistoryDto>  getEmployeeHistory(@PathVariable("employeeid") int employeeid){
+        return employeeService.getEmployeeHistory(employeeid);
+    }
 
 
 

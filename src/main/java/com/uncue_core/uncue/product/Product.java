@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Setter
@@ -16,7 +17,7 @@ public class Product {
     @Column(nullable = false)
     private int saloonId;
     private String name;
-    private String productCode;
+    private String expiryDate;
     private float sellingPrice;
     private int qty;
 

@@ -7,7 +7,6 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 
 @SpringBootApplication
 @EnableConfigurationProperties({ FileStorageProperties.class })
-
 public class UncueApplication {
 
 	public static void main(String[] args) {

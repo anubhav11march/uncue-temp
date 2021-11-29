@@ -1,12 +1,12 @@
 package com.uncue_core.uncue.appointment;
 
-import com.uncue_core.uncue.LobArray.IntegerArray;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.annotation.Nullable;
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -20,11 +20,9 @@ public class Appointment implements Serializable {
     int saloonid;
     @Column(nullable = false)
     int customerid;
-    @Column(nullable = false)
-    int employeeid;
-    Float billid;
+    int billid;
     String status;
-    @Lob
-    IntegerArray serviceid;
+    @ElementCollection
+    List<AppointmentChild> appointmentChildList = new ArrayList<>();
 
 }

@@ -29,6 +29,7 @@ public class BillController {
     }
 
     @GetMapping("${reteriveBill}")
+
     public Bill getBIll(@PathVariable("billid") int billid) {
         return   billService.getBIll(billid);
     }

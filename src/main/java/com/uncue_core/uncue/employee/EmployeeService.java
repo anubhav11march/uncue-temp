@@ -33,4 +33,8 @@ public class EmployeeService {
         employee.setPassword(passwordEncoder.encode(getPassword));
         return repository.save(employee);
     }
+
+    public List<EmployeeHistoryDto> getEmployeeHistory(int employeeid) {
+      return   repository.getEmployeeHistory(employeeid);
+    }
 }

@@ -17,7 +17,10 @@ public class AppointmentController {
 
         return appointmentService.insertAppointment(appointment);
 
-    }
+
+
+
+        }
 
     @GetMapping("${reteriveAppointments}")
     public List<Appointment> getAppointments(@PathVariable("saloonId") int saloonId) {
@@ -32,5 +35,7 @@ public class AppointmentController {
         return   appointmentService.getAppointment(appointmentid);
 
     }
+
+
 
 }

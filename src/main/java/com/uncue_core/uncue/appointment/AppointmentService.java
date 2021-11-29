@@ -1,6 +1,5 @@
 package com.uncue_core.uncue.appointment;
 
-import com.uncue_core.uncue.product.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,8 +11,12 @@ public class AppointmentService {
     AppoitmentRepository repository;
 
 
-    public Appointment insertAppointment(Appointment appointment) {
-        return repository.save(appointment);
+
+
+    public Appointment insertAppointment(Appointment appointmentDto) {
+
+      return  repository.save(appointmentDto);
+
     }
 
     public List<Appointment> getAppointments(int saloonId) {
@@ -23,4 +26,6 @@ public class AppointmentService {
     public Appointment getAppointment(int appointmentid) {
         return repository.findById(appointmentid).get();
     }
+
+
 }
