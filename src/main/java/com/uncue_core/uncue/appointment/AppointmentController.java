@@ -23,7 +23,7 @@ public class AppointmentController {
         }
 
     @GetMapping("${reteriveAppointments}")
-    public List<Appointment> getAppointments(@PathVariable("saloonId") int saloonId) {
+    public List<AppointmentHistoryDto> getAppointments(@PathVariable("saloonId") int saloonId) {
 
 
         return   appointmentService.getAppointments(saloonId);

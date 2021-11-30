@@ -9,6 +9,10 @@ import java.util.List;
 @Repository
 public interface AppoitmentRepository extends JpaRepository<Appointment,Integer> {
 
-    List<Appointment> findBySaloonidOrderByAppointmentidDesc(int saloonId);
+    @Query(value=" select appointment.appointmentid, appointment.saloonid," +
+            " c.customerid,appointment.timeStamp as timestamp ,c.name as customername from appointment " +
+            " inner join customer c on appointment.customerid = c.customerid where appointment.saloonid = ?1 " ,nativeQuery=true)
+    List<AppointmentUpdateDto> getUpdateDto(int saloonId);
+
 
 }
